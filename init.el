@@ -59,7 +59,7 @@
 ;;(require 'expand-region)
 (global-set-key (kbd "C-d") 'er/expand-region)
 
-(global-set-key (kbd "C-e") 'emmet-expand-line)
+(global-set-key (kbd "C-j") 'emmet-expand-line)
 
 (global-set-key (kbd "C-u") 'undo-only)
 (global-set-key (kbd "C-w") 'backward-kill-word)
