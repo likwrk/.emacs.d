@@ -37,6 +37,8 @@
 (setq-default indent-tabs-mode nil)
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(global-auto-revert-mode 1)
+
 ;;Scroll
 
 (setq mouse-wheel-scroll-amount '(2))
@@ -56,6 +58,9 @@
 (setq ido-enable-flex-matching t)
 (setq ido-use-faces nil)
 
+;; Canceling
+(global-set-key [escape] (lambda () (interactive) (keyboard-quit) (keyboard-escape-quit)))
+
 ;;(require 'multiple-cursors)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
@@ -68,12 +73,25 @@
 (electric-indent-mode t)
 ;;(global-set-key (kbd "RET") 'newline-and-indent)
 
-(global-set-key (kbd "M-<f2>") 'nv-speedbar-open-current-buffer-in-tree)
-(global-set-key (kbd "<f8>") 'sr-speedbar-toggle)
 
-(setq speedbar-show-unknown-files t) ; show all files
-(setq speedbar-use-images nil) ; use text for buttons
-(setq sr-speedbar-right-side t) ; put on left side
+;;(require 'neotree)
+(setq neo-window-width 40)
+(global-set-key [f8] 'neotree-toggle)
+;;(global-set-key [(meta f2)] 'neotree-find)
+;;(global-set-key (kbd "M-<f2>") 'neotree-find)
+;;(global-set-key (kbd "C-c t") 'neotree-find)
+(global-set-key (kbd "<f5>") 'neotree-find)
+(setq projectile-switch-project-action 'neotree-projectile-action)
+(setq neo-theme 'nerd)
+(setq neo-smart-open nil)
+(setq neo-click-changes-root nil)
+
+;;(global-set-key (kbd "M-<f2>") 'nv-speedbar-open-current-buffer-in-tree)
+;;(global-set-key (kbd "<f8>") 'sr-speedbar-toggle)
+;;
+;;(setq speedbar-show-unknown-files t) ; show all files
+;;(setq speedbar-use-images nil) ; use text for buttons
+;;(setq sr-speedbar-right-side t) ; put on left side
 
 (move-text-default-bindings)
 
@@ -106,9 +124,11 @@
 (global-set-key (kbd "M-]") 'delete-pair)
 (global-set-key (kbd "M-}") 'delete-pair)
 
+(global-set-key (kbd "C-g") 'goto-line)
+
 
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
-(global-set-key (kbd "C-x p") 'helm-projectile-find-file-in-known-projects)
+(global-set-key (kbd "C-c p") 'helm-projectile-find-file-in-known-projects)
 (global-set-key (kbd "C-c o p") 'helm-projectile-switch-project)
 ;;(global-set-key (kbd "C-c p p") 'helm-projectile)
 
